@@ -30,8 +30,8 @@ backend:
     home: Home
     user: User
     manage: Manage
-    categories: Categories
-    blog: Blog
+    products: Products
+    contacts: Contacts
     history: History
   login:
     new_site: New to site?

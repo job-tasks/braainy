@@ -1,0 +1,142 @@
+{% extends "admin/bars.html.twig" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block contentpage %}
+    <h1>Contact</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ contact.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ contact.type }}</td>
+            </tr>
+            <tr>
+                <th>OrganizationId</th>
+                <td>{{ contact.organizationId }}</td>
+            </tr>
+            <tr>
+                <th>CreatedTime</th>
+                <td>{{ contact.createdTime ? contact.createdTime|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ contact.name }}</td>
+            </tr>
+            <tr>
+                <th>CountryId</th>
+                <td>{{ contact.countryId }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ contact.street }}</td>
+            </tr>
+            <tr>
+                <th>CityId</th>
+                <td>{{ contact.cityId }}</td>
+            </tr>
+            <tr>
+                <th>CityText</th>
+                <td>{{ contact.cityText }}</td>
+            </tr>
+            <tr>
+                <th>StateId</th>
+                <td>{{ contact.stateId }}</td>
+            </tr>
+            <tr>
+                <th>StateText</th>
+                <td>{{ contact.stateText }}</td>
+            </tr>
+            <tr>
+                <th>ZipcodeId</th>
+                <td>{{ contact.zipcodeId }}</td>
+            </tr>
+            <tr>
+                <th>ZipcodeText</th>
+                <td>{{ contact.zipcodeText }}</td>
+            </tr>
+            <tr>
+                <th>ContactNo</th>
+                <td>{{ contact.contactNo }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ contact.phone }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ contact.fax }}</td>
+            </tr>
+            <tr>
+                <th>CurrencyId</th>
+                <td>{{ contact.currencyId }}</td>
+            </tr>
+            <tr>
+                <th>RegistrationNo</th>
+                <td>{{ contact.registrationNo }}</td>
+            </tr>
+            <tr>
+                <th>Eam</th>
+                <td>{{ contact.eam }}</td>
+            </tr>
+            <tr>
+                <th>LocaleId</th>
+                <td>{{ contact.localeId }}</td>
+            </tr>
+            <tr>
+                <th>IsCustomer</th>
+                <td>{{ contact.isCustomer ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsSupplier</th>
+                <td>{{ contact.isSupplier ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>PaymentTermsMode</th>
+                <td>{{ contact.paymentTermsMode }}</td>
+            </tr>
+            <tr>
+                <th>PaymentTermsDays</th>
+                <td>{{ contact.paymentTermsDays }}</td>
+            </tr>
+            <tr>
+                <th>AccessCode</th>
+                <td>{{ contact.accessCode }}</td>
+            </tr>
+            <tr>
+                <th>EmailAttachmentDeliveryMode</th>
+                <td>{{ contact.emailAttachmentDeliveryMode }}</td>
+            </tr>
+            <tr>
+                <th>IsArchived</th>
+                <td>{{ contact.isArchived ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsSalesTaxExempt</th>
+                <td>{{ contact.isSalesTaxExempt ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>DefaultExpenseProductDescription</th>
+                <td>{{ contact.defaultExpenseProductDescription }}</td>
+            </tr>
+            <tr>
+                <th>DefaultExpenseAccountId</th>
+                <td>{{ contact.defaultExpenseAccountId }}</td>
+            </tr>
+            <tr>
+                <th>DefaultTaxRateId</th>
+                <td>{{ contact.defaultTaxRateId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('contact_index') }}" class="btn btn-info">back to list</a>
+
+    <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-dark">edit</a>
+
+    {{ include('contact/_delete_form.html.twig') }}
+{% endblock %}
