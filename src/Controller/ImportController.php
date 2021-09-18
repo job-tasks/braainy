@@ -74,7 +74,7 @@ class ImportController extends AbstractController
      */
     private function getAndImport(string $what, EntityServiceInterface $service)
     {
-        if ($responseString = $this->curlService->send('https://api.billysbilling.com/v2/' . $what)) {
+        if ($responseString = $this->curlService->send($_ENV["ERP_URL"] . $what)) {
             if ($this->isJson($responseString)) {
                 $response = json_decode($responseString, true);
                 if (

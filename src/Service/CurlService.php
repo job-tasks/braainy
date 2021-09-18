@@ -10,23 +10,33 @@ final class CurlService
 {
     /**
      * @param $url
+     * @param $requestType
      * @param array $postArray
      * @return bool|string
      */
-    public function send($url, $postArray = [])
+    public function send($url, $requestType = CURLOPT_HTTPGET, $postArray = [])
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
 
+        $headers = [
+            "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34"
+        ];
+
         //If there is array to send post else get
-        if (!empty($postArray)) {
-            curl_setopt($ch, CURLOPT_POST, true);
+        if ($requestType === CURLOPT_POST) {
+            curl_setopt($ch, $requestType, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postArray));
         }
 
-        $headers = array(
-            "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34",
-        );
+        if ($requestType === CURLOPT_PUT) {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postArray));
+            $headers = [
+                "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34",
+                'Content-Type: application/json',
+            ];
+        }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
