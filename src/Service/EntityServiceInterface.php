@@ -2,7 +2,9 @@
 
 namespace App\Service;
 
-interface  EntityServiceInterface
+interface EntityServiceInterface
 {
-    public function getOrCreate(array $array);
+    public function updateOrCreate(array $array);
+
+    public function sync(array $array);
 }

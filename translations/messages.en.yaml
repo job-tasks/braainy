@@ -33,6 +33,8 @@ backend:
     products: Products
     contacts: Contacts
     import_from_billy: "Import From Billy"
+    sync_from_billy: "Sync From Billy"
+    sync_to_billy: "Sync To Billy"
     history: History
   login:
     new_site: New to site?

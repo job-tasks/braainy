@@ -18,6 +18,7 @@ class ContactType extends AbstractType
             ->add('type', ChoiceType::class,[
                 'choices' => ContactTypeConstants::getChoices()
             ])
+            ->add('billyId')
             ->add('organizationId')
             ->add('createdTime', DateTimeType::class)
             ->add('name')

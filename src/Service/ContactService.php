@@ -31,16 +31,14 @@ final class ContactService implements EntityServiceInterface
      * @return Contact|object|null
      * @throws \Exception
      */
-    public function getOrCreate(array $array)
+    public function updateOrCreate(array $array)
     {
         try {
-            if ($contact = $this->entityManager->getRepository(Contact::class)->findOneBy([
+            if (!$contact = $this->entityManager->getRepository(Contact::class)->findOneBy([
                 'billyId' => $array['id'],
             ])) {
-                return $contact;
+                $contact = new Contact();
             }
-
-            $contact = new Contact();
             $contact->setBillyId($array['id']);
             $contact->setType(ContactTypeConstants::getChoices()[$array['type']]);
             $contact->setOrganizationId($array['organizationId']);
@@ -78,6 +76,24 @@ final class ContactService implements EntityServiceInterface
             $this->entityManager->flush();
 
             return $contact;
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage());
+        }
+    }
+
+    public function sync(array $array)
+    {
+        try {
+            $updatedIds = [];
+            foreach ($array as $item) {
+                $this->updateOrCreate($item);
+                array_push($updatedIds, $item['id']);
+            }
+
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $query = $queryBuilder->delete(Contact::class,'c')->where('c.billyId NOT IN (:updated_ids)')
+                ->setParameter(':updated_ids', $updatedIds)->getQuery();
+            $query->execute();
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
         }

@@ -44,17 +44,10 @@
                             <a href="{{ path('import') }}">
                                 <i class="fa fa-angle-double-left"></i> {{ "backend.menu.import_from_billy"|trans }}</a>
                         </li>
-                        {% if is_granted("ROLE_SUPERUSER") %}
-                        <li><a><i class="fa fa-user"></i> {{ "backend.menu.user"|trans }} <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu">
-                                <li>
-{#                                    <a href="{{ path('app_admin_users') }}">#}
-                                    <a>
-                                        {{ "backend.menu.manage"|trans }}
-                                    </a></li>
-                            </ul>
+                        <li>
+                            <a href="{{ path('sync_from_erp') }}">
+                                <i class="fa fa-retweet"></i> {{ "backend.menu.sync_from_billy"|trans }}</a>
                         </li>
-                        {% endif %}
                     </ul>
                 </div>
 

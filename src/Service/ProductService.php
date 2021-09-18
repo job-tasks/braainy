@@ -32,16 +32,14 @@ final class ProductService implements EntityServiceInterface
      * @return Contact|object|null
      * @throws \Exception
      */
-    public function getOrCreate(array $array)
+    public function updateOrCreate(array $array)
     {
         try {
-            if ($product = $this->entityManager->getRepository(Product::class)->findOneBy([
+            if (!$product = $this->entityManager->getRepository(Product::class)->findOneBy([
                 'billyId' => $array['id'],
             ])) {
-                return $product;
+                $product = new Product();
             }
-
-            $product = new Product();
             $product->setBillyId($array['id']);
             $product->setOrganizationId($array['organizationId']);
             $product->setName($array['name']);
@@ -61,6 +59,24 @@ final class ProductService implements EntityServiceInterface
             $this->entityManager->flush();
 
             return $product;
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage());
+        }
+    }
+
+    public function sync(array $array)
+    {
+        try {
+            $updatedIds = [];
+            foreach ($array as $item) {
+                $this->updateOrCreate($item);
+                array_push($updatedIds, $item['id']);
+            }
+
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $query = $queryBuilder->delete(Product::class,'p')->where('p.billyId NOT IN (:updated_ids)')
+                ->setParameter(':updated_ids', $updatedIds)->getQuery();
+            $query->execute();
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
         }

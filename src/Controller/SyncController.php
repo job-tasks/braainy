@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/import")
+ * @Route("/sync")
  */
-class ImportController extends AbstractController
+class SyncController extends AbstractController
 {
     /**
      * @var CurlService
@@ -42,14 +42,14 @@ class ImportController extends AbstractController
     }
 
     /**
-     * @Route("/", name="import")
+     * @Route("/from-erp", name="sync_from_erp")
      */
-    public function index(): Response
+    public function fromErp(): Response
     {
         try {
-            $this->getAndImport('contacts', $this->contactService);
-            $this->getAndImport('products', $this->productService);
-            $this->addFlash('success', "Import from Billy has been successful!");
+            $this->getAndSync('contacts', $this->contactService);
+            $this->getAndSync('products', $this->productService);
+            $this->addFlash('success', "Sync from Billy has been successful!");
         } catch (\Exception $exception) {
             $this->addFlash('error', $exception->getMessage());
         }
@@ -72,7 +72,7 @@ class ImportController extends AbstractController
      * @param EntityServiceInterface $service
      * @throws \Exception
      */
-    private function getAndImport(string $what, EntityServiceInterface $service)
+    private function getAndSync(string $what, EntityServiceInterface $service)
     {
         if ($responseString = $this->curlService->send($_ENV["ERP_URL"] . $what)) {
             if ($this->isJson($responseString)) {
@@ -83,9 +83,7 @@ class ImportController extends AbstractController
                     $response['meta']['statusCode'] === RESPONSE::HTTP_OK
                 ) {
                     if (array_key_exists($what, $response)) {
-                        foreach ($response[$what] as $array) {
-                            $service->updateOrCreate($array);
-                        }
+                        $service->sync($response[$what]);
                     }
                 } else {
                     throw new \Exception('There is a problem with JSON response!');

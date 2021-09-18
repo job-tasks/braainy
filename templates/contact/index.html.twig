@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>BillyId</th>
                 <th>Type</th>
                 <th>OrganizationId</th>
                 <th>CreatedTime</th>
@@ -46,6 +47,7 @@
         {% for contact in contacts %}
             <tr>
                 <td><a href="{{ path('contact_edit', {'id': contact.id}) }}">{{ contact.id }}</a></td>
+                <td>{{ contact.billyId }}</td>
                 <td>{{ constant('App\\Constant\\ContactTypeConstants::CHOICES')[contact.type] }}</td>
                 <td>{{ contact.organizationId }}</td>
                 <td>{{ contact.createdTime ? contact.createdTime|date('Y-m-d H:i:s') : '' }}</td>
