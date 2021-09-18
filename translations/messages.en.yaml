@@ -1,0 +1,41 @@
+backend:
+  global:
+    welcome: Welcome
+    you_are_logged: You are logged in as
+    leave_impersonate: Leaving impersonation
+    change_my_password: Change my password
+    logout: Logout
+    error: Error
+    success: Success
+    an_unexpected_error: An unexpected error has occurred
+    must_not_be_empty: Must not be empty
+    please_confirm: Please confirm your action?
+    choice_action: Select an action
+    no_item_selected: No items selected
+    name: Name
+    ip: Ip
+    last: Last
+    hash: Hash
+    country: Country
+    status: Status
+    actions: Actions
+    listing: Listing
+    is_active: "Is Active"
+  buttons:
+    cancel: Cancel
+    submit: Submit
+    edit: Edit
+    save: Save
+  menu:
+    home: Home
+    user: User
+    manage: Manage
+    categories: Categories
+    blog: Blog
+    history: History
+  login:
+    new_site: New to site?
+    create_acount: Create Account
+    all_rights: All Rights Reserved.
+    already_member: Already a member?
+    log_in: Log in
