@@ -20,6 +20,11 @@ class Contact
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $billyId;
+
+    /**
      * @ORM\Column(type="integer"))
      */
     private $type = ContactTypeConstants::COMPANY;
@@ -107,7 +112,7 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $eam;
+    private $ean;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -169,9 +174,26 @@ class Contact
      */
     private $defaultTaxRateId;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $externalId;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getBillyId(): ?string
+    {
+        return $this->billyId;
+    }
+
+    public function setBillyId(string $billyId): self
+    {
+        $this->billyId = $billyId;
+
+        return $this;
     }
 
     public function getType(): ?int
@@ -378,14 +400,14 @@ class Contact
         return $this;
     }
 
-    public function getEam(): ?string
+    public function getEan(): ?string
     {
-        return $this->eam;
+        return $this->ean;
     }
 
-    public function setEam(?string $eam): self
+    public function setEan(?string $ean): self
     {
-        $this->eam = $eam;
+        $this->ean = $ean;
 
         return $this;
     }
@@ -530,6 +552,18 @@ class Contact
     public function setDefaultTaxRateId(?string $defaultTaxRateId): self
     {
         $this->defaultTaxRateId = $defaultTaxRateId;
+
+        return $this;
+    }
+
+    public function getExternalId(): ?string
+    {
+        return $this->externalId;
+    }
+
+    public function setExternalId(?string $externalId): self
+    {
+        $this->externalId = $externalId;
 
         return $this;
     }

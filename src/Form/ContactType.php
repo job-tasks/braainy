@@ -34,7 +34,7 @@ class ContactType extends AbstractType
             ->add('fax')
             ->add('currencyId')
             ->add('registrationNo')
-            ->add('eam')
+            ->add('ean')
             ->add('localeId')
             ->add('isCustomer')
             ->add('isSupplier')

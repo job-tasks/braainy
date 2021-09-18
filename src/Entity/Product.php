@@ -46,6 +46,11 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $inventoryAccountId;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $productNo;
 
     /**
@@ -144,6 +149,18 @@ class Product
     public function setAccountId(string $accountId): self
     {
         $this->accountId = $accountId;
+
+        return $this;
+    }
+
+    public function getInventoryAccountId(): ?string
+    {
+        return $this->inventoryAccountId;
+    }
+
+    public function setInventoryAccountId(?string $inventoryAccountId): self
+    {
+        $this->inventoryAccountId = $inventoryAccountId;
 
         return $this;
     }

@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CurlService.
@@ -24,6 +23,12 @@ final class CurlService
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postArray));
         }
+
+        $headers = array(
+            "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34",
+        );
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         //So that curl_exec returns the contents of the cURL; rather than echoing it
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
