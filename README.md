@@ -15,6 +15,11 @@
   ```
   docker-compose build && docker-compose up -d
   ```
+  
+- Attach to a container
+  ```
+  docker exec -it braainy_web sh
+  ```
 
 - Install dependencies
   ```
