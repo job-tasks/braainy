@@ -5,6 +5,8 @@
 {% block contentpage %}
     <h1>Product List</h1>
 
+    <a href="{{ path('product_new') }}" class="btn btn-primary">Create new</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -14,13 +16,8 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>AccountId</th>
-                <th>ProductNo</th>
                 <th>SuppliersProductNo</th>
-                <th>SalesTaxRulesetId</th>
                 <th>IsArchived</th>
-                <th>IsInInventory</th>
-                <th>ImageId</th>
-                <th>ImageUrl</th>
                 <th>ExternalId</th>
                 <th>actions</th>
             </tr>
@@ -34,13 +31,8 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.accountId }}</td>
-                <td>{{ product.productNo }}</td>
                 <td>{{ product.suppliersProductNo }}</td>
-                <td>{{ product.salesTaxRulesetId }}</td>
                 <td>{{ product.isArchived ? 'Yes' : 'No' }}</td>
-                <td>{{ product.isInInventory ? 'Yes' : 'No' }}</td>
-                <td>{{ product.imageId }}</td>
-                <td>{{ product.imageUrl }}</td>
                 <td>{{ product.externalId }}</td>
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info">show</a>
@@ -55,5 +47,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}" class="btn btn-primary">Create new</a>
+
 {% endblock %}

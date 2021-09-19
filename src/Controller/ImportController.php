@@ -93,6 +93,8 @@ class ImportController extends AbstractController
             } else {
                 throw new \Exception('Response is not json!');
             }
+        } else {
+            throw new \Exception('Failed to get response from ERP!');
         }
     }
 }

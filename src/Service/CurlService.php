@@ -10,32 +10,33 @@ final class CurlService
 {
     /**
      * @param $url
-     * @param $requestType
+     * @param string $requestMethod
      * @param array $postArray
      * @return bool|string
      */
-    public function send($url, $requestType = CURLOPT_HTTPGET, $postArray = [])
+    public function send($url, $requestMethod = "GET", $postArray = [])
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
 
-        $headers = [
-            "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34"
-        ];
-
         //If there is array to send post else get
-        if ($requestType === CURLOPT_POST) {
-            curl_setopt($ch, $requestType, true);
+        if ($requestMethod === "POST") {
+            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postArray));
         }
 
-        if ($requestType === CURLOPT_PUT) {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        if ($requestMethod === "PUT" || $requestMethod === "PATCH") {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestMethod);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postArray));
-            $headers = [
-                "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34",
-                'Content-Type: application/json',
-            ];
+        }
+
+        $headers = [
+            "X-Access-Token: 749f6c0f873eb98f16257eec9baa47c944617d34",
+            'Content-Type: application/json',
+        ];
+
+        if ($requestMethod === "DELETE") {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestMethod);
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -45,6 +46,7 @@ final class CurlService
 
         //execute post
         $result = curl_exec($ch);
+
 
         // Check HTTP status code
         if (!curl_errno($ch)) {

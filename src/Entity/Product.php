@@ -21,12 +21,12 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $billyId;
+    private $billyId = 'Will be generated new ID!';
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $organizationId;
+    private $organizationId = 'cwNMzNn1TOWhrYwyb6jdfA';
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,7 +41,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $accountId;
+    private $accountId = '4qAjMzZRRoO7sOAjzkorjw';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -51,37 +51,14 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $productNo;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $suppliersProductNo;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $salesTaxRulesetId;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $isArchived = false;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $isInInventory = false;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageId;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageUrl;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -165,18 +142,6 @@ class Product
         return $this;
     }
 
-    public function getProductNo(): ?string
-    {
-        return $this->productNo;
-    }
-
-    public function setProductNo(?string $productNo): self
-    {
-        $this->productNo = $productNo;
-
-        return $this;
-    }
-
     public function getSuppliersProductNo(): ?string
     {
         return $this->suppliersProductNo;
@@ -189,18 +154,6 @@ class Product
         return $this;
     }
 
-    public function getSalesTaxRulesetId(): ?string
-    {
-        return $this->salesTaxRulesetId;
-    }
-
-    public function setSalesTaxRulesetId(string $salesTaxRulesetId): self
-    {
-        $this->salesTaxRulesetId = $salesTaxRulesetId;
-
-        return $this;
-    }
-
     public function getIsArchived(): ?bool
     {
         return $this->isArchived;
@@ -209,42 +162,6 @@ class Product
     public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
-
-        return $this;
-    }
-
-    public function getIsInInventory(): ?bool
-    {
-        return $this->isInInventory;
-    }
-
-    public function setIsInInventory(bool $isInInventory): self
-    {
-        $this->isInInventory = $isInInventory;
-
-        return $this;
-    }
-
-    public function getImageId(): ?string
-    {
-        return $this->imageId;
-    }
-
-    public function setImageId(?string $imageId): self
-    {
-        $this->imageId = $imageId;
-
-        return $this;
-    }
-
-    public function getImageUrl(): ?string
-    {
-        return $this->imageUrl;
-    }
-
-    public function setImageUrl(?string $imageUrl): self
-    {
-        $this->imageUrl = $imageUrl;
 
         return $this;
     }

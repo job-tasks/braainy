@@ -22,7 +22,7 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $billyId;
+    private $billyId = 'Will be generated new ID!';
 
     /**
      * @ORM\Column(type="integer"))
@@ -32,12 +32,8 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $organizationId;
+    private $organizationId = "cwNMzNn1TOWhrYwyb6jdfA";
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $createdTime;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,37 +43,24 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $countryId;
+    private $countryId = "DK";
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $street;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $cityId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $cityText;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $stateId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $stateText;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $zipcodeId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -102,22 +85,12 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $currencyId;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $registrationNo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ean;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $localeId;
 
     /**
      * @ORM\Column(type="boolean")
@@ -130,11 +103,6 @@ class Contact
     private $isSupplier;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $paymentTermsMode;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $paymentTermsDays;
@@ -143,11 +111,6 @@ class Contact
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $accessCode;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $emailAttachmentDeliveryMode;
 
     /**
      * @ORM\Column(type="boolean")
@@ -164,15 +127,7 @@ class Contact
      */
     private $defaultExpenseProductDescription;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $defaultExpenseAccountId;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $defaultTaxRateId;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -220,18 +175,6 @@ class Contact
         return $this;
     }
 
-    public function getCreatedTime(): ?\DateTimeInterface
-    {
-        return $this->createdTime;
-    }
-
-    public function setCreatedTime(?\DateTimeInterface $createdTime): self
-    {
-        $this->createdTime = $createdTime;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
@@ -268,18 +211,6 @@ class Contact
         return $this;
     }
 
-    public function getCityId(): ?string
-    {
-        return $this->cityId;
-    }
-
-    public function setCityId(?string $cityId): self
-    {
-        $this->cityId = $cityId;
-
-        return $this;
-    }
-
     public function getCityText(): ?string
     {
         return $this->cityText;
@@ -292,18 +223,6 @@ class Contact
         return $this;
     }
 
-    public function getStateId(): ?string
-    {
-        return $this->stateId;
-    }
-
-    public function setStateId(?string $stateId): self
-    {
-        $this->stateId = $stateId;
-
-        return $this;
-    }
-
     public function getStateText(): ?string
     {
         return $this->stateText;
@@ -312,18 +231,6 @@ class Contact
     public function setStateText(?string $stateText): self
     {
         $this->stateText = $stateText;
-
-        return $this;
-    }
-
-    public function getZipcodeId(): ?string
-    {
-        return $this->zipcodeId;
-    }
-
-    public function setZipcodeId(?string $zipcodeId): self
-    {
-        $this->zipcodeId = $zipcodeId;
 
         return $this;
     }
@@ -376,18 +283,6 @@ class Contact
         return $this;
     }
 
-    public function getCurrencyId(): ?string
-    {
-        return $this->currencyId;
-    }
-
-    public function setCurrencyId(?string $currencyId): self
-    {
-        $this->currencyId = $currencyId;
-
-        return $this;
-    }
-
     public function getRegistrationNo(): ?string
     {
         return $this->registrationNo;
@@ -408,18 +303,6 @@ class Contact
     public function setEan(?string $ean): self
     {
         $this->ean = $ean;
-
-        return $this;
-    }
-
-    public function getLocaleId(): ?string
-    {
-        return $this->localeId;
-    }
-
-    public function setLocaleId(?string $localeId): self
-    {
-        $this->localeId = $localeId;
 
         return $this;
     }
@@ -448,18 +331,6 @@ class Contact
         return $this;
     }
 
-    public function getPaymentTermsMode(): ?string
-    {
-        return $this->paymentTermsMode;
-    }
-
-    public function setPaymentTermsMode(?string $paymentTermsMode): self
-    {
-        $this->paymentTermsMode = $paymentTermsMode;
-
-        return $this;
-    }
-
     public function getPaymentTermsDays(): ?int
     {
         return $this->paymentTermsDays;
@@ -480,18 +351,6 @@ class Contact
     public function setAccessCode(?string $accessCode): self
     {
         $this->accessCode = $accessCode;
-
-        return $this;
-    }
-
-    public function getEmailAttachmentDeliveryMode(): ?string
-    {
-        return $this->emailAttachmentDeliveryMode;
-    }
-
-    public function setEmailAttachmentDeliveryMode(?string $emailAttachmentDeliveryMode): self
-    {
-        $this->emailAttachmentDeliveryMode = $emailAttachmentDeliveryMode;
 
         return $this;
     }
@@ -528,30 +387,6 @@ class Contact
     public function setDefaultExpenseProductDescription(?string $defaultExpenseProductDescription): self
     {
         $this->defaultExpenseProductDescription = $defaultExpenseProductDescription;
-
-        return $this;
-    }
-
-    public function getDefaultExpenseAccountId(): ?string
-    {
-        return $this->defaultExpenseAccountId;
-    }
-
-    public function setDefaultExpenseAccountId(?string $defaultExpenseAccountId): self
-    {
-        $this->defaultExpenseAccountId = $defaultExpenseAccountId;
-
-        return $this;
-    }
-
-    public function getDefaultTaxRateId(): ?string
-    {
-        return $this->defaultTaxRateId;
-    }
-
-    public function setDefaultTaxRateId(?string $defaultTaxRateId): self
-    {
-        $this->defaultTaxRateId = $defaultTaxRateId;
 
         return $this;
     }

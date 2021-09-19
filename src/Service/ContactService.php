@@ -6,6 +6,7 @@ namespace App\Service;
 use App\Constant\ContactTypeConstants;
 use App\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 /**
  * Class ContactService.
@@ -34,6 +35,7 @@ final class ContactService implements EntityServiceInterface
     public function updateOrCreate(array $array)
     {
         try {
+            /** Contact $contact */
             if (!$contact = $this->entityManager->getRepository(Contact::class)->findOneBy([
                 'billyId' => $array['id'],
             ])) {
@@ -42,34 +44,23 @@ final class ContactService implements EntityServiceInterface
             $contact->setBillyId($array['id']);
             $contact->setType(ContactTypeConstants::getChoices()[$array['type']]);
             $contact->setOrganizationId($array['organizationId']);
-            $contact->setCreatedTime((new \DateTime($array['createdTime'])));
             $contact->setName($array['name']);
             $contact->setCountryId($array['countryId']);
             $contact->setStreet($array['street']);
-            $contact->setCityId($array['cityId']);
             $contact->setCityText($array['cityText']);
-            $contact->setStateId($array['stateId']);
             $contact->setStateText($array['stateText']);
-            $contact->setZipcodeId($array['zipcodeId']);
             $contact->setZipcodeText($array['zipcodeText']);
             $contact->setContactNo($array['contactNo']);
             $contact->setPhone($array['phone']);
             $contact->setFax($array['fax']);
-            $contact->setCurrencyId($array['currencyId']);
             $contact->setRegistrationNo($array['registrationNo']);
             $contact->setEan($array['ean']);
-            $contact->setLocaleId($array['localeId']);
             $contact->setIsCustomer($array['isCustomer']);
             $contact->setIsSupplier($array['isSupplier']);
-            $contact->setPaymentTermsMode($array['paymentTermsMode']);
-            $contact->setPaymentTermsDays($array['paymentTermsDays']);
             $contact->setAccessCode($array['accessCode']);
-            $contact->setEmailAttachmentDeliveryMode($array['emailAttachmentDeliveryMode']);
             $contact->setIsArchived($array['isArchived']);
             $contact->setIsSalesTaxExempt($array['isSalesTaxExempt']);
             $contact->setDefaultExpenseProductDescription($array['defaultExpenseProductDescription']);
-            $contact->setDefaultExpenseAccountId($array['defaultExpenseAccountId']);
-            $contact->setDefaultTaxRateId($array['defaultTaxRateId']);
             $contact->setExternalId($array['externalId']);
 
             $this->entityManager->persist($contact);
@@ -81,6 +72,10 @@ final class ContactService implements EntityServiceInterface
         }
     }
 
+    /**
+     * @param array $array
+     * @throws \Exception
+     */
     public function sync(array $array)
     {
         try {
@@ -97,5 +92,50 @@ final class ContactService implements EntityServiceInterface
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
         }
+    }
+
+    /**
+     * @return object[]
+     */
+    public function getAll(): array
+    {
+        /** @var Query $query */
+        $query =  $this->entityManager->getRepository(Contact::class)
+            ->createQueryBuilder('c')
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+
+    /**
+     * @param array $array
+     * @param false $isNew
+     * @return array
+     */
+    public function prepareArray(array $array, $isNew = false): array
+    {
+        if($isNew){
+            $array['externalId'] = $array['id'];
+            unset($array['id']);
+        }else{
+            $array['id'] = $array['billyId'];
+        }
+        unset($array['billyId']);
+
+        $array['type'] = ContactTypeConstants::CHOICES[$array['type']];
+
+        return $array;
+    }
+
+    /**
+     * @param int $id
+     * @param string $billyId
+     */
+    public function updateId(int $id,string $billyId)
+    {
+        /** @var Contact $contact */
+        $contact = $this->entityManager->getRepository(Contact::class)->find($id);
+        $contact->setBillyId($billyId);
+        $this->entityManager->flush();
     }
 }

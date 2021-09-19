@@ -5,6 +5,8 @@
 {% block contentpage %}
     <h1>Contact List</h1>
 
+    <a href="{{ path('contact_new') }}" class="btn btn-primary">Create new</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -12,34 +14,23 @@
                 <th>BillyId</th>
                 <th>Type</th>
                 <th>OrganizationId</th>
-                <th>CreatedTime</th>
                 <th>Name</th>
                 <th>CountryId</th>
                 <th>Street</th>
-                <th>CityId</th>
                 <th>CityText</th>
-                <th>StateId</th>
                 <th>StateText</th>
-                <th>ZipcodeId</th>
                 <th>ZipcodeText</th>
                 <th>ContactNo</th>
                 <th>Phone</th>
                 <th>Fax</th>
-                <th>CurrencyId</th>
                 <th>RegistrationNo</th>
-                <th>Eam</th>
-                <th>LocaleId</th>
+                <th>Ean</th>
                 <th>IsCustomer</th>
                 <th>IsSupplier</th>
-                <th>PaymentTermsMode</th>
-                <th>PaymentTermsDays</th>
                 <th>AccessCode</th>
-                <th>EmailAttachmentDeliveryMode</th>
                 <th>IsArchived</th>
                 <th>IsSalesTaxExempt</th>
                 <th>DefaultExpenseProductDescription</th>
-                <th>DefaultExpenseAccountId</th>
-                <th>DefaultTaxRateId</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -50,34 +41,23 @@
                 <td>{{ contact.billyId }}</td>
                 <td>{{ constant('App\\Constant\\ContactTypeConstants::CHOICES')[contact.type] }}</td>
                 <td>{{ contact.organizationId }}</td>
-                <td>{{ contact.createdTime ? contact.createdTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.countryId }}</td>
                 <td>{{ contact.street }}</td>
-                <td>{{ contact.cityId }}</td>
                 <td>{{ contact.cityText }}</td>
-                <td>{{ contact.stateId }}</td>
                 <td>{{ contact.stateText }}</td>
-                <td>{{ contact.zipcodeId }}</td>
                 <td>{{ contact.zipcodeText }}</td>
                 <td>{{ contact.contactNo }}</td>
                 <td>{{ contact.phone }}</td>
                 <td>{{ contact.fax }}</td>
-                <td>{{ contact.currencyId }}</td>
                 <td>{{ contact.registrationNo }}</td>
                 <td>{{ contact.ean }}</td>
-                <td>{{ contact.localeId }}</td>
                 <td>{{ contact.isCustomer ? 'Yes' : 'No' }}</td>
                 <td>{{ contact.isSupplier ? 'Yes' : 'No' }}</td>
-                <td>{{ contact.paymentTermsMode }}</td>
-                <td>{{ contact.paymentTermsDays }}</td>
                 <td>{{ contact.accessCode }}</td>
-                <td>{{ contact.emailAttachmentDeliveryMode }}</td>
                 <td>{{ contact.isArchived ? 'Yes' : 'No' }}</td>
                 <td>{{ contact.isSalesTaxExempt ? 'Yes' : 'No' }}</td>
                 <td>{{ contact.defaultExpenseProductDescription }}</td>
-                <td>{{ contact.defaultExpenseAccountId }}</td>
-                <td>{{ contact.defaultTaxRateId }}</td>
                 <td>
                     <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-info">show</a>
                     <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-dark">edit</a>
@@ -91,5 +71,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('contact_new') }}" class="btn btn-primary">Create new</a>
+
 {% endblock %}

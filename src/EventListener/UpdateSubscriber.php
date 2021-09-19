@@ -44,11 +44,11 @@ class UpdateSubscriber implements EventSubscriberInterface
 
         $entity = $args->getObject();
         if ($entity instanceof Product) {
-            $this->curlService->send($_ENV["ERP_URL"] . 'products/'.$entity->getBillyId(), CURLOPT_PUT, ['product'=>$changes]);
+            $this->curlService->send($_ENV["ERP_URL"] . 'products/'.$entity->getBillyId(), "PUT", ['product'=>$changes]);
         }
 
         if ($entity instanceof Contact) {
-            $this->curlService->send($_ENV["ERP_URL"] . 'contacts/'.$entity->getBillyId(), CURLOPT_PUT, ['contact'=>$changes]);
+            $this->curlService->send($_ENV["ERP_URL"] . 'contacts/'.$entity->getBillyId(), "PUT", ['contact'=>$changes]);
         }
     }
 

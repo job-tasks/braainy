@@ -7,6 +7,7 @@ use App\Constant\ContactTypeConstants;
 use App\Entity\Contact;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 
 /**
  * Class ProductService.
@@ -46,14 +47,8 @@ final class ProductService implements EntityServiceInterface
             $product->setExternalId($array['externalId']);
             $product->setDescription($array['description']);
             $product->setAccountId($array['accountId']);
-            $product->setInventoryAccountId($array['inventoryAccountId']);
-            $product->setProductNo($array['productNo']);
             $product->setSuppliersProductNo($array['suppliersProductNo']);
-            $product->setSalesTaxRulesetId($array['salesTaxRulesetId']);
             $product->setIsArchived($array['isArchived']);
-            $product->setIsInInventory($array['isInInventory']);
-            $product->setImageId($array['imageId']);
-            $product->setImageUrl($array['imageUrl']);
 
             $this->entityManager->persist($product);
             $this->entityManager->flush();
@@ -74,11 +69,55 @@ final class ProductService implements EntityServiceInterface
             }
 
             $queryBuilder = $this->entityManager->createQueryBuilder();
-            $query = $queryBuilder->delete(Product::class,'p')->where('p.billyId NOT IN (:updated_ids)')
+            $query = $queryBuilder->delete(Product::class, 'p')->where('p.billyId NOT IN (:updated_ids)')
                 ->setParameter(':updated_ids', $updatedIds)->getQuery();
             $query->execute();
         } catch (\Exception $exception) {
             throw new \Exception($exception->getMessage());
         }
+    }
+
+    /**
+     * @return object[]
+     */
+    public function getAll(): array
+    {
+        /** @var Query $query */
+        $query = $this->entityManager->getRepository(Product::class)
+            ->createQueryBuilder('p')
+            ->getQuery();
+
+        return $query->getArrayResult();
+    }
+
+    /**
+     * @param array $array
+     * @param false $isNew
+     * @return array
+     */
+    public function prepareArray(array $array, $isNew = false): array
+    {
+        if($isNew){
+            $array['externalId'] = $array['id'];
+            unset($array['id']);
+
+        }else{
+            $array['id'] = $array['billyId'];
+        }
+        unset($array['billyId']);
+
+        return $array;
+    }
+
+    /**
+     * @param int $id
+     * @param string $billyId
+     */
+    public function updateId(int $id,string $billyId)
+    {
+        /** @var Product $contact */
+        $product = $this->entityManager->getRepository(Product::class)->find($id);
+        $product->setBillyId($billyId);
+        $this->entityManager->flush();
     }
 }
