@@ -37,3 +37,9 @@
    email: admin@admin.com
    password: 123456
    ```
+  
+## Additional Information
+- in the commit (b2a4837 - Sync to ERP ) I decided to reduce the amount of information
+that was initially saved in database, because of a maintenance of data. The better
+  solution would be to create all the relations and additional modules, but it was
+  not asked in initial task.
