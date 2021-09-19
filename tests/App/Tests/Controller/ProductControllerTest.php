@@ -31,6 +31,19 @@ class ProductControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(302);
     }
 
+    public function testShowWhileLoggedIn()
+    {
+        $client = static::createClient(array(
+            'debug'       => true,
+        ));
+
+        $this->logInUser($client);
+
+        $client->request('GET', 'http://localhost:8088/product/5');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Product');
+    }
+
     private function logInUser(KernelBrowser $client)
     {
         $userRepository = static::getContainer()->get(UserRepository::class);
