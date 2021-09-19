@@ -38,6 +38,11 @@
    password: 123456
    ```
   
+- For testing
+  ```
+  php bin/phpunit
+  ```
+  
 ## Additional Information
 - in the commit (b2a4837 - Sync to ERP ) I decided to reduce the amount of information
 that was initially saved in database, because of a maintenance of data. The better
