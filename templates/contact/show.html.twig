@@ -20,10 +20,6 @@
                 <td>{{ contact.organizationId }}</td>
             </tr>
             <tr>
-                <th>CreatedTime</th>
-                <td>{{ contact.createdTime ? contact.createdTime|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Name</th>
                 <td>{{ contact.name }}</td>
             </tr>
@@ -36,24 +32,12 @@
                 <td>{{ contact.street }}</td>
             </tr>
             <tr>
-                <th>CityId</th>
-                <td>{{ contact.cityId }}</td>
-            </tr>
-            <tr>
                 <th>CityText</th>
                 <td>{{ contact.cityText }}</td>
             </tr>
             <tr>
-                <th>StateId</th>
-                <td>{{ contact.stateId }}</td>
-            </tr>
-            <tr>
                 <th>StateText</th>
                 <td>{{ contact.stateText }}</td>
-            </tr>
-            <tr>
-                <th>ZipcodeId</th>
-                <td>{{ contact.zipcodeId }}</td>
             </tr>
             <tr>
                 <th>ZipcodeText</th>
@@ -72,20 +56,12 @@
                 <td>{{ contact.fax }}</td>
             </tr>
             <tr>
-                <th>CurrencyId</th>
-                <td>{{ contact.currencyId }}</td>
-            </tr>
-            <tr>
                 <th>RegistrationNo</th>
                 <td>{{ contact.registrationNo }}</td>
             </tr>
             <tr>
-                <th>Eam</th>
-                <td>{{ contact.eam }}</td>
-            </tr>
-            <tr>
-                <th>LocaleId</th>
-                <td>{{ contact.localeId }}</td>
+                <th>Ean</th>
+                <td>{{ contact.ean }}</td>
             </tr>
             <tr>
                 <th>IsCustomer</th>
@@ -96,20 +72,12 @@
                 <td>{{ contact.isSupplier ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>PaymentTermsMode</th>
-                <td>{{ contact.paymentTermsMode }}</td>
-            </tr>
-            <tr>
                 <th>PaymentTermsDays</th>
                 <td>{{ contact.paymentTermsDays }}</td>
             </tr>
             <tr>
                 <th>AccessCode</th>
                 <td>{{ contact.accessCode }}</td>
-            </tr>
-            <tr>
-                <th>EmailAttachmentDeliveryMode</th>
-                <td>{{ contact.emailAttachmentDeliveryMode }}</td>
             </tr>
             <tr>
                 <th>IsArchived</th>
@@ -122,14 +90,6 @@
             <tr>
                 <th>DefaultExpenseProductDescription</th>
                 <td>{{ contact.defaultExpenseProductDescription }}</td>
-            </tr>
-            <tr>
-                <th>DefaultExpenseAccountId</th>
-                <td>{{ contact.defaultExpenseAccountId }}</td>
-            </tr>
-            <tr>
-                <th>DefaultTaxRateId</th>
-                <td>{{ contact.defaultTaxRateId }}</td>
             </tr>
         </tbody>
     </table>
